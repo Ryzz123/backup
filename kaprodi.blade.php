@@ -1,3 +1,12 @@
+foreach ($service as &$s) {
+            $dplDetails = [];
+            foreach ($s['program']['dpl'] as $dpl) {
+                $dpl['status'] = in_array($dpl['dpl_id'], array_column($s['dpl'], 'dpl_id')) ? "Y" : "N";
+                $dplDetails[] = $dpl;
+            }
+            $s['program']['dpl'] = $dplDetails;
+        }
+
 @if(in_array($mahasiswa['program']['program']['status'], ['tutup', 'proses', 'selesai']))
                                 <button class="cursor-not-allowed hidden md:block w-full px-7 py-2 group transition transform duration-700 bg-transparent hover:bg-orange-500 focus:bg-orange-500 border-[0.5px] hover:border-orange-500 focus:border-orange-500 rounded-lg focus:scale-95">
                                     <h1 class="text-[10px] sm:text-xs font-semibold transition transform duration-500 text-orange-500 group-hover:text-[#FFFFFF] group-focus:text-[#FFFFFF] uppercase">
